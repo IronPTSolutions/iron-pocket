@@ -13,11 +13,43 @@ const Schema = mongoose.Schema;
 
 const linkSchema = new Schema(
   {
-    // TODO: model attributes validations
+    url: {
+      type: String,
+      required: 'URL is required',
+      validate: {
+        validator: function (url) {
+          try {
+            new URL(url);
+            return true
+          } catch (error) {
+            return false;
+          }
+        },
+        message: () => 'URL is not valid'
+      }
+    },
+    title: String,
+    description: String,
+    image: {
+      type: String,
+      default: 'https://icon-library.com/images/no-picture-available-icon/no-picture-available-icon-1.jpg'
+    },
+    keywords: {
+      type: [String],
+      default: []
+    }
   },
   {
     timestamps: true,
-    // TODO: toJSON transformation
+    toJSON: {
+      virtuals: true,
+      transform: function(doc, ret) {
+        ret.id = ret._id;
+        delete ret._id;
+        delete ret.__v;
+        return ret;
+      }
+    }
   }
 )
 
