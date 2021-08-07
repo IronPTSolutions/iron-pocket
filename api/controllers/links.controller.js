@@ -27,7 +27,9 @@ module.exports.create = (req, res, next) => {
   // Please don't freak out with documentation! it's just a promise!: urlMetadata(url).then(metadata => {}).catch(error => next(error))
 
   const { url, keywords } = req.body;
-  urlMetadata(url)
+  // We need validate the url before try to obtain the metadata, we can validate url against the mongoose model
+  new Link({ url }).validate('url')
+    .then(() => urlMetadata(url))
     .then(metadata => {
       const data = { title, description, image } = metadata;
       data.image = data.image || 'https://icon-library.com/images/no-picture-available-icon/no-picture-available-icon-1.jpg'
