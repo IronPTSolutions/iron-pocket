@@ -1,6 +1,7 @@
 const urlMetadata = require('url-metadata');
 const links = require('../data/links.json');
 const mongoose = require('mongoose');
+const Link = require('../models/link.model');
 
 require('../config/db.config');
 
@@ -23,6 +24,8 @@ mongoose.connection.once('open', () => {
     })
     .then(links => {
       // TODO: store links at the database 
+      console.info(`Successfully created ${links.length} links`)
+      return Link.create(links)
     })
     .catch(error => console.error('An error ocurred running seeds', error))
     .then(() => mongoose.disconnect())

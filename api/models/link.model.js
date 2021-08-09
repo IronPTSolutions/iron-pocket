@@ -13,7 +13,17 @@ const Schema = mongoose.Schema;
 
 const linkSchema = new Schema(
   {
-    // TODO: model attributes validations
+    url: {
+      type: String,
+      required: 'An URL must be inluded'
+    },
+    title: String,
+    description: String,
+    image: String,
+    keywords: {
+      type: [String],
+      default: []
+    }
   },
   {
     timestamps: true,
