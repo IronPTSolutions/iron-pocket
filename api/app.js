@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const createError = require('http-errors');
 const express = require('express');
 const mongoose = require('mongoose');
@@ -8,6 +10,9 @@ const cors = require('./config/cors.config');
 
 const app = express();
 
+/** React app */
+app.use(express.static(`${__dirname}/react-app`));
+
 /** Middlewares */
 app.use(express.json());
 app.use(logger('dev'));
@@ -17,9 +22,13 @@ app.use(cors);
 const routes = require('./config/routes.config');
 app.use('/api', routes);
 
-/** Error Handling */
+/** Configure react routes */
+// Todo lo que no sea /api => ruta del react
+app.get('/*', (req, res) => {
+  res.sendFile(`${__dirname}/react-app/index.html`)
+})
 
-app.use((req, res, next) => next(createError(404, 'Route not found')))
+/** Error Handling */
 
 app.use((error, req, res, next) => {
   if (error instanceof mongoose.Error.ValidationError) {

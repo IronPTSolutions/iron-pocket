@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const urlMetadata = require('url-metadata');
 const links = require('../data/links.json');
 const Link = require('../models/link.model');

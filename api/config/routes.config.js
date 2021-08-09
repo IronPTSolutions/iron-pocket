@@ -1,3 +1,4 @@
+const createError = require('http-errors');
 const express = require('express');
 const router = express.Router();
 
@@ -9,5 +10,7 @@ router.post('/links', links.create);
 router.get('/links/:id', link.exists, links.detail);
 router.delete('/links/:id', link.exists, links.delete);
 router.put('/links/:id', link.exists, links.edit);
+
+router.use((req, res, next) => next(createError(404, 'Route not found')))
 
 module.exports = router;
