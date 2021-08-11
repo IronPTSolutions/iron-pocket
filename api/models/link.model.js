@@ -30,12 +30,20 @@ const linkSchema = new Schema(
     },
     keywords: {
       type: [String],
-      default:''
+      default:[]
     }
   },
   {
     timestamps: true,
-    // TODO: toJSON transformation
+    toJSON: {
+      virtuals: true,
+      transform: function(doc, ret) {
+        ret.id = ret._id;
+        delete ret.__v;
+        delete ret._id;
+        return ret
+      }
+    }
   }
 )
 

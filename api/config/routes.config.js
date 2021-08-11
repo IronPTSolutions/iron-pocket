@@ -9,6 +9,6 @@ router.get('/links', links.list)
 router.post('/links', links.create)
 router.delete('/links/:id', link.findLink, links.delete)
 router.get('/links/:id', link.findLink, links.detail)
-//router.put('/links/:id', link.findLink, links.edit)
+router.put('/links/:id', link.findLink, links.edit)
 
 module.exports = router;
