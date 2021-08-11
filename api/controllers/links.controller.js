@@ -19,24 +19,25 @@ module.exports.delete = (req, res, next) => {
 }
 
 module.exports.create = (req, res, next) => {
-  link = {url} = req.body;
-  new Link({ url }).validate('url')
-    .then(() => urlMetadata(url))
-    .then(metadata => {
-      link.title = metadata.title;
-      link.image = metadata.image;
-      link.description = metadata.description;
-      link.keywords = metadata.keywords;
-      return link;
-    })
-    .then(link => {
-      if (link) {
-        res.status(201).json(link)
-      } else {
-        createError(error)
-      }
-    })
-    .catch(error => next(error))
+  link = { url } = req.body
+    new Link({ url }).validate('url')
+      .then(() => urlMetadata(url))
+      .then( metadata => {
+        link.title = metadata.title;
+        link.image = metadata.image;
+        link.description = metadata.description;
+        link.keywords = metadata.keywords;
+        return Link.create(link)
+      })
+      .then((link) => {
+        if(link) {
+          res.status(201).json(link)
+        } else {
+          createError(error)
+        }
+      })
+      .catch((error) => next(error))
+  
 }
 
 module.exports.edit = (req, res, next) => {
