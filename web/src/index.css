@@ -11,3 +11,32 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+header {
+  background-color: #ccc;
+  color: #fff;
+  margin: 0;
+  padding: 5%;
+}
+
+.LinkItem {
+  display: flex;
+  
+}
+
+.LinkItem img {
+  max-width: 300px;
+}
+
+.LinkItem > div {
+  padding: 2%;
+}
+
+h3 {
+  color: #ccc;
+}
+
+h6 {
+  color: #666;
+  font-size: 0.7rem;
+}
