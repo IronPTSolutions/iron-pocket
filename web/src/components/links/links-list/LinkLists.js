@@ -28,7 +28,7 @@ render(){
     const { links, isLoading } = this.state
     return(
         links &&
-        <div className="col-9">
+        <div className="col-9 container">
             {isLoading ? (<i className="fa fa-gear fa-spin" ></i>) : (<h2>This are your saved links</h2>) }
             <LinkCreator onCreateLink={(link) => this.handleCreateLink(link)} />
             {links.map(link => <LinkItem key={link.id} {...link} />) }

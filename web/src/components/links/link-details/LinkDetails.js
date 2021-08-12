@@ -2,6 +2,7 @@
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
 import linkService from '../../../services/links-service';
+import Moment from 'react-moment';
 
 class LinkDetail extends Component {
 
@@ -45,6 +46,7 @@ class LinkDetail extends Component {
         <div className="container col-9 row">
             <div className="col-4"><img src={link.image} alt={link.title} /></div>
             <div className="col-5">
+                <small><Moment fromNow>{link.createdAt}</Moment></small>
                 <h1>{link.title}</h1>
                 <p>{link.description}</p>
                 <h6>{link.keywords.map(keyword => `#${keyword}`)}</h6>
@@ -52,9 +54,9 @@ class LinkDetail extends Component {
             </div>
             <div className="col-3">
                 <ul>
-                <li><a href={link.url} target="_blank"><i class="fas fa-link"></i> Visit link</a></li>
-                <li><Link to={`${link.id}/edit`}><i class="far fa-edit"></i> edit link</Link></li>
-                <li><a href="#" onClick={() => this.handleDeleteLink(link.id)}><i class="far fa-trash-alt"></i> Delete link</a></li>
+                <li><a href={link.url} target="_blank" rel="noreferrer"><i className="fas fa-link"></i> Visit link</a></li>
+                <li><Link to={`${link.id}/edit`}><i className="far fa-edit"></i> edit link</Link></li>
+                <li><a href="#" onClick={() => this.handleDeleteLink(link.id)}><i className="far fa-trash-alt"></i> Delete link</a></li>
                 </ul>
             </div>
         </div>
