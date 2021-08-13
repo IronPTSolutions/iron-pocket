@@ -21,10 +21,10 @@ class LinkDetails extends Component {
             })
     }
 
-    handleDeleteContact() {
+    handleRemove() {
         const id = this.props.match?.params?.id;
         linkService.remove(id)
-            .then(link => this.setState({ link }),
+            .then(link => this.props.onDeleteLink(link),
             this.props.history.push('/links'))
             .catch(error => {
                 console.error(error);
@@ -53,10 +53,10 @@ class LinkDetails extends Component {
                                 <button className="btn btn-primary" href="/links">
                                     <i className="fa fa-edit"></i>
                                 </button>
-                                <button className="btn btn-secondary" href="/links">
+                                <a type="button" className="btn btn-secondary" href={link.url} target="_blank" rel="noopener noreferrer">
                                     <i className="fa fa-eye"></i>
-                                </button>
-                                <button className="btn btn-danger" onClick={() => this.handleDeleteContact()}>
+                                </a>
+                                <button className="btn btn-danger" onClick={() => this.handleRemove()}>
                                     <i className="fa fa-times"></i>
                                 </button>
                             </div>
@@ -71,7 +71,10 @@ class LinkDetails extends Component {
 
     }
 
+}
 
+LinkDetails.defaultProps = {
+    onDeleteLink: () => {}
 }
 
 export default LinkDetails;

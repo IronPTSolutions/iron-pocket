@@ -32,6 +32,19 @@ class LinkLists extends Component {
         }))
     }
 
+    handleDeleteLink(id) {
+        linkService.remove(id)
+            .then(link => this.setState({ link }),
+            this.props.history.push('/links'))
+            .catch(error => {
+                console.error(error);
+                if (error.response?.status === 404) {
+                    this.props.history.push('/404');
+                }
+            })
+
+    }
+
 
 
     render() {
@@ -48,14 +61,13 @@ class LinkLists extends Component {
                         <ul className="list-group">
                             {links.map(link => 
                                 <li key={link.id} className="list-group-item list-group-item-action">
-                                    <LinkItem {...link}/>
+                                    <LinkItem {...link} onDeleteLink={(id) => this.handleDeleteLink(id)}/>
                                 </li>
                                 )}
                         </ul>
                     </div>
                 </div>
             )}
-            <div>helloooooo</div>
             </>
         )
     }

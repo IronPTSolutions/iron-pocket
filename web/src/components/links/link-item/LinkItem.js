@@ -27,4 +27,6 @@ function LinkItem({ id, title, image, description, updatedAt}) {
      )
 }
 
+
+
 export default LinkItem;
