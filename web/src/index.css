@@ -23,6 +23,12 @@ code {
   flex-direction: column;
   position: absolute;
   height:100%;
+  align-items: center;
+}
+
+.Home img {
+  max-width: 300px;
+  max-height: 300px;
 }
 
 .Home h1 {
@@ -70,6 +76,10 @@ header a {
   margin-left: 2%;
 }
 
+header img {
+  max-width: 200px;
+}
+
 .LinkItem {
   display: flex;
   
@@ -90,4 +100,19 @@ h3 {
 h6 {
   color: #666;
   font-size: 0.7rem;
+}
+
+.side-bar {
+  background-color: rgb(252, 90, 141, 0.8) ;
+  color: #fff;
+  padding: 10% 2%;
+}
+
+.side-bar ul {
+   list-style: none;
+}
+
+.side-bar a {
+  color: #fff;
+  text-decoration: none;
 }

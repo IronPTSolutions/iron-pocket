@@ -5,9 +5,12 @@ function Header () {
     return(
         <header className="col-3">
             <nav className="navbar navbar-dark">
-                <ul className="navbar-nav">
-                <li className="nav-item"><NavLink exact to="/links" className="nav-link">Links</NavLink></li>
-                <li>Add Link</li>
+                <a className="navbar-brand" href="/">
+                    <img src="./img/iron-pocket.png" alt="iron pocket"/>
+                </a>
+                <ul className="navbar-nav">                
+                  <li className="nav-item"><NavLink exact to="/links" className="nav-link">Links</NavLink></li>
+                  <li>Add Link</li>
                 </ul>
             </nav>
         </header>

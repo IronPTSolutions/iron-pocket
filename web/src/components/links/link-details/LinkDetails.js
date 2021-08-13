@@ -49,10 +49,10 @@ class LinkDetail extends Component {
                 <small><Moment fromNow>{link.createdAt}</Moment></small>
                 <h1>{link.title}</h1>
                 <p>{link.description}</p>
-                <h6>{link.keywords.map(keyword => `#${keyword}`)}</h6>
+                {link.keywords && <h6>{link.keywords.map(keyword => `#${keyword}`)}</h6>}
           
             </div>
-            <div className="col-3">
+            <div className="col-3 side-bar">
                 <ul>
                 <li><a href={link.url} target="_blank" rel="noreferrer"><i className="fas fa-link"></i> Visit link</a></li>
                 <li><Link to={`${link.id}/edit`}><i className="far fa-edit"></i> edit link</Link></li>
