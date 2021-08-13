@@ -16,9 +16,23 @@ class LinkDetails extends Component {
             .catch(error => {
                 console.error(error);
                 if (error.response?.status === 404) {
-                    this.props.history.push('/links');
+                    this.props.history.push('/404');
                 }
             })
+    }
+
+    handleDeleteContact() {
+        const id = this.props.match?.params?.id;
+        linkService.remove(id)
+            .then(link => this.setState({ link }),
+            this.props.history.push('/links'))
+            .catch(error => {
+                console.error(error);
+                if (error.response?.status === 404) {
+                    this.props.history.push('/404');
+                }
+            })
+
     }
 
     render() {
@@ -34,7 +48,19 @@ class LinkDetails extends Component {
                     <div className="card-body">
                         <h5 className="card-title">{link.title}</h5>
                         <p className="card-text">{link.description}</p>
-                        <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                        <div className="col-12">
+                            <div className="btn-group" role="group" aria-label="Basic mixed styles example">
+                                <button className="btn btn-primary" href="/links">
+                                    <i className="fa fa-edit"></i>
+                                </button>
+                                <button className="btn btn-secondary" href="/links">
+                                    <i className="fa fa-eye"></i>
+                                </button>
+                                <button className="btn btn-danger" onClick={() => this.handleDeleteContact()}>
+                                    <i className="fa fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                     </div>
                 </div>

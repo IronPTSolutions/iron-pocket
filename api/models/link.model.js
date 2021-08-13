@@ -18,8 +18,7 @@ const linkSchema = new Schema(
     url: {
       type: String,
       match: [URL_PATTERN, 'URL is not valid'],
-      required: [ true, 'URL is required'],
-      unique: true,
+      required: [ true, 'URL is required']
       
     },
 
@@ -32,11 +31,12 @@ const linkSchema = new Schema(
     },
 
     image: {
-      type: String
+      type: String,
+      default: 'https://f.hubspotusercontent40.net/hubfs/6969796/Screenshot%202021-08-13%20at%2021.50.38.png'
     },
     keywords: {
       type: [String],
-      default: [],
+      default: []
 
     }
   },

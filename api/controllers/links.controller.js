@@ -50,7 +50,7 @@ module.exports.edit = (req, res, next) => {
 
 module.exports.delete = (req, res, next) => {
   Link.deleteOne({ _id: req.link.id })
-    .then(link => res.status(201).json(link))
+    .then(link => res.status(204).json(link))
     .catch(error => next(error))
 }
 
