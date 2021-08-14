@@ -53,7 +53,7 @@ class LinkDetail extends Component {
 
                 <h1>{link.title}</h1>
                 <p>{link.description}</p>
-                {link.keywords && <h6>{link.keywords.map(keyword => `#${keyword}`)}</h6>}            
+                {link.keywords.length > 1 && <h6>{link.keywords.map(keyword => `#${keyword}`)}</h6>}            
             </div>
                 <ul>
                     <li><a href={link.url} target="_blank" rel="noreferrer"><i className="fas fa-link"></i> Visit link</a></li>

@@ -33,7 +33,7 @@ module.exports.delete = (req, res, next) => {
      link.title = metadata.title;
      link.image = metadata.image;
      link.description = metadata.description;
-     link.keywords = metadata.keywords;
+     link.keywords = metadata.keywords.split(',');
      return link     
     })
     .then(link => { 

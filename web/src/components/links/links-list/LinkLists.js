@@ -36,7 +36,7 @@ render(){
             <h2>Start saving your links and have fun</h2>
             <LinkCreator onCreateLink={(link) => this.handleCreateLink(link)} />
             {isLoading ? (<i className="fa fa-gear fa-spin" ></i>) : (<h2>Your pocketed links</h2>) }            
-            {links.map(link => <div><p> {link.id} </p> <LinkItem key={link.id} {...link} id={link.id} /></div>) }
+            {links.map(link => <LinkItem key={link.id} {...link} id={link.id} />) }
         </div>
     )
 }
