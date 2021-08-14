@@ -6,7 +6,7 @@ function Home() {
             <img src="./img/iron-pocket.png" alt="Iron Pocket"/>
             <h1>Welcome to iron Pocket</h1>
             <hr/>
-            <h2>Save your favourite notes for later!</h2>
+            <h2>Save it for later!</h2>
             <Link exact to="/links">Start now</Link>
         </div>
     )

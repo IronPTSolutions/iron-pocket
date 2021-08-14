@@ -31,7 +31,7 @@ class LinkDetail extends Component {
 
     handleDeleteLink(id){
         linkService.remove(id)
-            .then(() => this.props.history.push('/'))
+            .then(() => this.props.history.push('/links'))
             .catch()
     }
 
@@ -56,7 +56,7 @@ class LinkDetail extends Component {
                 <ul>
                 <li><a href={link.url} target="_blank" rel="noreferrer"><i className="fas fa-link"></i> Visit link</a></li>
                 <li><Link to={`${link.id}/edit`}><i className="far fa-edit"></i> edit link</Link></li>
-                <li><a href="#" onClick={() => this.handleDeleteLink(link.id)}><i className="far fa-trash-alt"></i> Delete link</a></li>
+                <li><i className="far fa-trash-alt stretched-link" role="button" onClick={() => this.handleDeleteLink(link.id)}></i> Delete link</li>
                 </ul>
             </div>
         </div>

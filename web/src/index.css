@@ -66,9 +66,11 @@ header {
   background-color: #007a73;
   color: #fff;
   margin: 0;
-  padding: 5% !important;
   font-size: 2rem;
+}
 
+header ul {
+  padding: 5% !important;
 }
 
 header a {
@@ -80,9 +82,19 @@ header img {
   max-width: 200px;
 }
 
+nav {
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
 .LinkItem {
   display: flex;
+  position: relative;
   
+}
+
+.LinkItem:hover {
+  background-color: ghostwhite;
 }
 
 .LinkItem img {
@@ -95,6 +107,15 @@ header img {
 
 h3 {
   color: #fc5a8d;
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+p {
+  color: #4a4a4a;
+  font-size: 1em;
+  font-weight: 400;
+  line-height: 1.5;
 }
 
 h6 {
@@ -112,7 +133,15 @@ h6 {
    list-style: none;
 }
 
+.side-bar li {
+  position: relative;
+}
+
 .side-bar a {
   color: #fff;
   text-decoration: none;
+}
+
+.bg-danger {
+  background-color: #e5c0cc !important;
 }

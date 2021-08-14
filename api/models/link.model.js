@@ -2,15 +2,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const URL_PATTERN = /^(ht|f)tp(s?)\:\/\/[0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*(:(0-9)*)*(\/?)([a-zA-Z0-9\-\.\?\,\'\/\\\+&amp;%\$#_]*)?$/
 
-/**
-  | Attribute   | Type     | Validation               |
-  |-------------|----------|--------------------------|
-  | url         | String   | Required, must be an URL |
-  | title       | String   |                          |
-  | description | String   |                          |
-  | image       | String   |                          |
-  | keywords    | [String] | default empty            |
- */
 
 const linkSchema = new Schema(
   {

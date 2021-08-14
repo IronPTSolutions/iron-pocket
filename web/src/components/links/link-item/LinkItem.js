@@ -6,8 +6,8 @@ import Moment from 'react-moment';
 function LinkItem ({id, title, image, description, createdAt}) {
   
     return(
-        <Link exact to={id}>
-        <div className="LinkItem">
+        
+        <div className="LinkItem"><Link exact to={id} className="stretched-link" ></Link>
             <div>
                 <img src={image} alt={title}/>
             </div>
@@ -15,8 +15,10 @@ function LinkItem ({id, title, image, description, createdAt}) {
                 <h3>{title}</h3>
                 <p>{description}</p>
                 <small><Moment fromNow>{createdAt}</Moment></small>
-            </div>
-        </div></Link>
+                
+            </div> 
+        </div>
+       
     )
     
 }

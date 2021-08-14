@@ -26,6 +26,8 @@ handleCreateLink(link) {
 
 render(){
     const { links, isLoading } = this.state
+    links.sort((a, b) => b.createdAt - a.createdAt)
+
     return(
         links &&
         <div className="col-9 container mt-5">
