@@ -3,7 +3,7 @@ import Moment from 'react-moment';
 
 
 
-function LinkItem ({id, title, image, description, createdAt}) {
+function LinkItem ({id, title, image, description, createdAt, updatedAt}) {
   
     return(
         
@@ -14,7 +14,7 @@ function LinkItem ({id, title, image, description, createdAt}) {
             <div>
                 <h3>{title}</h3>
                 <p>{description}</p>
-                <small><Moment fromNow>{createdAt}</Moment></small>                
+                <small>Created <Moment fromNow>{createdAt}</Moment></small> {createdAt !== updatedAt && <small> | Last updated <Moment fromNow>{updatedAt}</Moment></small>}             
             </div> <Link exact to={id} className="stretched-link" />
         </div>
        

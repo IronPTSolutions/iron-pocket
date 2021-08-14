@@ -49,7 +49,8 @@ class LinkDetail extends Component {
             </div>
             <div className="col-3 side-bar"> 
             <div >
-                <small><Moment fromNow>{link.createdAt}</Moment></small>
+                <small>Created: <Moment fromNow>{link.createdAt}</Moment></small>{link.createdAt !== link.updatedAt && <small> | Updated: <Moment fromNow>{link.updatedAt}</Moment></small>}
+
                 <h1>{link.title}</h1>
                 <p>{link.description}</p>
                 {link.keywords && <h6>{link.keywords.map(keyword => `#${keyword}`)}</h6>}            

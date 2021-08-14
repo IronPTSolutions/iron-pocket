@@ -10,7 +10,6 @@ function Header () {
                 </a>
                 <ul className="navbar-nav">                
                   <li className="nav-item"><NavLink exact to="/links" className="nav-link">Links</NavLink></li>
-                  <li>Add Link</li>
                 </ul>
             </nav>
         </header>
