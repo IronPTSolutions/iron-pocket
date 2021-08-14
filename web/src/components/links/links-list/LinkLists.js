@@ -11,7 +11,7 @@ state = {
 
 componentDidMount() {
     linkService.list()
-        .then(links => this.setState({ links, isLoading: false }))
+        .then(links => this.setState({ links : links.sort((a, b) => b.createdAt.localeCompare(a.createdAt)), isLoading: false }))
         .catch(error => { 
             this.setState({ isLoading: false })
             console.error(error)})
@@ -19,7 +19,7 @@ componentDidMount() {
 
 handleCreateLink(link) {
     this.setState(({ links }) => ({
-      links: [link, ...links]
+      links: [ link,...links ]
     }))
 }
 
@@ -27,13 +27,13 @@ handleCreateLink(link) {
 render(){
 
     document.title = 'Your saved links';
-
     const { links, isLoading } = this.state;
-    links.sort((a, b) => b.createdAt - a.createdAt);
-
+  
     return(
         links &&
-        <div className="col-9 container mt-5">
+        <div className="col-9 container p-5">
+            <h1>This is your Iron Pocket!</h1>
+            <h2>Start saving your links and have fun</h2>
             <LinkCreator onCreateLink={(link) => this.handleCreateLink(link)} />
             {isLoading ? (<i className="fa fa-gear fa-spin" ></i>) : (<h2>Your pocketed links</h2>) }            
             {links.map(link => <LinkItem key={link.id} {...link} />) }

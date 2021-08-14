@@ -7,16 +7,15 @@ function LinkItem ({id, title, image, description, createdAt}) {
   
     return(
         
-        <div className="LinkItem"><Link exact to={id} className="stretched-link" ></Link>
+        <div className="LinkItem">
             <div>
                 <img src={image} alt={title}/>
             </div>
             <div>
                 <h3>{title}</h3>
                 <p>{description}</p>
-                <small><Moment fromNow>{createdAt}</Moment></small>
-                
-            </div> 
+                <small><Moment fromNow>{createdAt}</Moment></small>                
+            </div> <Link exact to={id} className="stretched-link" />
         </div>
        
     )
