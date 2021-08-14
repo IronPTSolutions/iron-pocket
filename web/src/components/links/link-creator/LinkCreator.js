@@ -105,9 +105,7 @@ class LinkCreator extends Component {
                         <button className="btn btn-outline-secondary" type="submit" disabled={!this.isFormValid()} id="button-addon2"><i className="fas fa-plus-square"></i></button>
                     </div> 
                     {touched.url && <h6 className={errors.url ? 'invalid-feedback' : 'valid-feedback'}><i className={errors.url ? "fas fa-exclamation-triangle" : "fas fa-check" }> {errors.url ? errors.url : 'All good. Save your link!'}</i></h6> }
-                </div>
-              
-               
+                </div>           
             </form>
         )
     }

@@ -25,8 +25,11 @@ handleCreateLink(link) {
 
 
 render(){
-    const { links, isLoading } = this.state
-    links.sort((a, b) => b.createdAt - a.createdAt)
+
+    document.title = 'Your saved links';
+
+    const { links, isLoading } = this.state;
+    links.sort((a, b) => b.createdAt - a.createdAt);
 
     return(
         links &&

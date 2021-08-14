@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom'
 
 function Home() {
+
+    document.title = 'Iron Pocket: Save it for later';
+
     return(
         <div className="Home">
             <img src="./img/iron-pocket.png" alt="Iron Pocket"/>
