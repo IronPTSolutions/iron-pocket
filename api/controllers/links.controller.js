@@ -34,10 +34,10 @@ module.exports.delete = (req, res, next) => {
      link.image = metadata.image;
      link.description = metadata.description;
      link.keywords = metadata.keywords.split(',');
-     return link     
+     return Link.create(link)   
     })
     .then(link => { 
-      if (link) { return Link.create(link), res.json(link)
+      if (link) { res.status(201).json(link)
       } else {
         createError(error)
       }
