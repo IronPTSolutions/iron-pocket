@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 const links = require('../controllers/links.controller')
 
-/** TODO: Links CRUD routes */
 router.get('/links', links.list)
+router.post('/links', links.create)
 router.get('/links/:id', links.detail)
 router.delete('/links/:id', links.delete)
 
