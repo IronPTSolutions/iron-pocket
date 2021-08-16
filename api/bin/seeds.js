@@ -23,7 +23,6 @@ mongoose.connection.once('open', () => {
       return Promise.all(linksWithMetadata)
     })
     .then(links => {
-      // TODO: store links at the database 
       console.info(`Successfully created ${links.length} links`)
       return Link.create(links)
     })

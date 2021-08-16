@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const URL_PATTERN= /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/
+
 /**
   | Attribute   | Type     | Validation               |
   |-------------|----------|--------------------------|
@@ -15,7 +17,8 @@ const linkSchema = new Schema(
   {
     url: {
       type: String,
-      required: 'An URL must be inluded'
+      match: [URL_PATTERN, 'URL is not valid'],
+      required: 'A link must be inluded'
     },
     title: String,
     description: String,
@@ -27,7 +30,15 @@ const linkSchema = new Schema(
   },
   {
     timestamps: true,
-    // TODO: toJSON transformation
+    toJSON: {
+      virtuals: true,
+      transform: function (doc, ret) {
+        ret.id = ret._id;
+        delete ret.__v;
+        delete ret._id;
+        return ret;
+      }
+    }
   }
 )
 
