@@ -9,6 +9,30 @@ module.exports.list = (req, res, next) => {
   .catch(error => next(error))
 }
 
+module.exports.detail = (req, res, next) => {
+  Link.findById(req.params.id)
+  .then(link => {
+    if(!link) {
+      next(createError(404, 'Link not found'))
+    }else{
+      res.json(link)
+    }
+  })
+  
+}
+
+module.exports.delete = (req, res, next) => {
+  Link.findByIdAndDelete(req.params.id)
+  .then(link => {
+    if(!link) {
+      next(createError(404, 'Link not found'))
+    }else{
+      res.status(204).send()
+    }
+  })
+  .catch(error => next(error))
+}
+
 /* module.exports.create = (req, res, next) => {
 
   // We are receiving only the link url at the http request body
