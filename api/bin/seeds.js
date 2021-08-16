@@ -22,9 +22,8 @@ mongoose.connection.once('open', () => {
       // Each metadata request is a promise, we need wait for all promises before execute the next 'then'
       return Promise.all(linksWithMetadata)
     })
-    .then(links => {
-      return Link.create(links)
-    })
+    .then(links => Link.create(links))
+    .then(links => console.info(`Sucessfully created ${links.length} links`))
     .catch(error => console.error('An error ocurred running seeds', error))
     .then(() => mongoose.disconnect())
 });

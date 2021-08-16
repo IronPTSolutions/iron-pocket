@@ -17,20 +17,20 @@ const linkSchema = new Schema(
     url: {
       type: String, 
       required: 'URL is required', 
-      match: [URL_PATTERN, 'URL not valid']
+      match: [URL_PATTERN, 'URL not valid'], 
+      lowercase: true
     }, 
     title: String,
     description: String, 
-    image: String
+    image: String,
   },
   {
     timestamps: true,
-    // TODO: toJSON transformation
     toJSON: {
       virtuals: true, 
       transform: function(doc, ret) {
         ret.id = ret._id; 
-        delete ret._v; 
+        delete ret.__v; 
         delete ret._id; 
         return ret;
       }

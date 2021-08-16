@@ -3,9 +3,13 @@ const urlMetadata = require('url-metadata');
 const Link = require('../models/link.model');
 
 //** TODO: Links CRUD actions: list, detail, create, update */
+module.exports.list = (req, res, next) => {
+  Link.find()
+  .then(links => res.json(links))
+  .catch(error => next(error))
+}
 
-
-module.exports.create = (req, res, next) => {
+/* module.exports.create = (req, res, next) => {
 
   // We are receiving only the link url at the http request body
   // req.body => { url: "https://something.com" }
@@ -25,4 +29,6 @@ module.exports.create = (req, res, next) => {
         // Create link's json and store at the database
     })
     .catch(error => next(error))
-}
+} */
+
+
