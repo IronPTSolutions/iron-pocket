@@ -1,7 +1,11 @@
+import { Route, Switch } from "react-router-dom";
+import Header from "./components/header/Header";
 
 function App() {
   return (
-    <h1>Hello Pocket =D</h1>
+    <div className="row">
+    <Header />   
+    </div>
   );
 }
 
