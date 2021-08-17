@@ -34,14 +34,18 @@ module.exports.delete = (req, res, next) => {
      link.image = metadata.image;
      link.description = metadata.description;
      link.keywords = metadata.keywords.split(',');
-     return Link.create(link)   
+
+     if (link.url !== req.url) {
+       res.status(201).json(link)  
+       Link.create(link);
+       
+     } else if ( link.url === req.url) {
+      next(createError(400, 'This url has already been added'))
+     }  else {
+      createError(error)
+    }
     })
-    .then(link => { 
-      if (link) { res.status(201).json(link)
-      } else {
-        createError(error)
-      }
-    })
+  
     .catch(error => next(error))  
 }
 

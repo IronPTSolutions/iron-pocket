@@ -15,3 +15,19 @@ module.exports.findLink = (req, res, next) => {
         })
         .catch(next)
 }
+
+module.exports.linkExists = (req, res, next) => {
+
+    
+    Link.findOne({ url: req.body.url})
+    .then(link => {
+        if (link) { 
+            
+            req.url = link.url;
+            next();
+        } else {
+            next()
+        }
+    })
+    .catch(next)
+}

@@ -50,10 +50,9 @@ class LinkDetail extends Component {
             <div className="col-3 side-bar"> 
             <div >
                 <small>Created: <Moment fromNow>{link.createdAt}</Moment></small>{link.createdAt !== link.updatedAt && <small> | Updated: <Moment fromNow>{link.updatedAt}</Moment></small>}
-
                 <h1>{link.title}</h1>
                 <p>{link.description}</p>
-                {link.keywords.length > 1 && <h6>{link.keywords.map(keyword => `#${keyword}`)}</h6>}            
+                {link.keywords.length > 1 && <h6>{link.keywords.map(keyword => `#${keyword}, `)}</h6>}            
             </div>
                 <ul>
                     <li><a href={link.url} target="_blank" rel="noreferrer"><i className="fas fa-link"></i> Visit link</a></li>
