@@ -73,24 +73,24 @@ class LinkCreator extends Component {
 
         linkService.create(this.state.link)
             .then(link => this.props.onCreateLink(link), this.setState(this.initialState()))
-            .catch(error => {
-                const { errors, message } = error.response?.data || error;
-                const touched = Object.key(errors || {}).reduce((touched, key) => {
+            .catch(error  => {
+                const { errors, message} = error.response?.data || error;
+                const touched =  Object.keys(errors || {}).reduce((touched, key) => {
                     touched[key] = true;
-                    return touched
+                    return touched;
                 }, {});
 
                 this.setState({
                     errors: {
-                        name: errors ? undefined : message,
+                        url: errors ? undefined : message,
                         ...errors,
                     },
                     touched: {
-                        name: errors ? false : true,
-                        ...touched
+                        url: errors ? false : true,
+                        ...touched,
                     }
                 })
-            })
+            })      
         }
     }
 
