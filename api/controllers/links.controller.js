@@ -37,8 +37,7 @@ module.exports.delete = (req, res, next) => {
 
      if (link.url !== req.url) {
        res.status(201).json(link)  
-       Link.create(link);
-       
+       Link.create(link);       
      } else if ( link.url === req.url) {
       next(createError(400, 'This url has already been added'))
      }  else {
