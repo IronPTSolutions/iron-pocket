@@ -25,7 +25,7 @@ module.exports.delete = (req, res, next) => {
 // https://www.npmjs.com/package/url-metadata#usage
 // https://mongoosejs.com/docs/api.html#document_Document-validate
   
-   link = { url } = req.body; 
+   const link = { url } = req.body; 
 
    new Link(link).validate('url')
     .then(() => urlMetadata(url))
@@ -36,12 +36,18 @@ module.exports.delete = (req, res, next) => {
      link.keywords = metadata.keywords.split(',');
 
      if (link.url !== req.url) {
-       res.status(201).json(link)  
-       Link.create(link);       
+       Link.create(link)
+       .then(newlink => res.status(201).json(newlink))
+       .catch(next)   
+       
      } else if ( link.url === req.url) {
+
       next(createError(400, 'This url has already been added'))
+
      }  else {
+
       createError(error)
+
     }
     })
   
