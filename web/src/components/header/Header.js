@@ -4,8 +4,8 @@ import { NavLink } from 'react-router-dom'
 function Header() {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-    <div className="container-fluid">
-      <a className="navbar-brand" href="#">Hello Pocket</a>
+    <div className="container-fluid" >
+      <a className="navbar-brand" href="/">Hello Pocket</a>
 
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav">

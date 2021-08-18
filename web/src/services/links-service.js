@@ -1,4 +1,9 @@
 import http from './base-api-service';
 
+const list = () => http.get('/links')
 
-// TODO: implement links service
+const service = {
+    list
+}
+
+export default service
