@@ -28,17 +28,13 @@ class Linkslist extends React.Component {
         return (
             links &&
             <>
-                <div>hola</div>
                 {isLoading ? (<i className="fa fa-gear fa-spin" />) : (
                     <div className="row mb-2">
                         <div className="col">
-                            <ul className="list-group">
-                                {links.map(link =>
-                                    <li key={link.id} className="list-group-item list-group-item-action">
-                                        <LinkItem {...link} />
-                                    </li>
-                                )}
-                            </ul>
+                            {links.map(link =>
+                                <div key={link.id} className="mb-2">
+                                    <LinkItem {...link} />
+                                </div>)}
                         </div>
                     </div>
                 )}
