@@ -29,24 +29,29 @@ class Linkslist extends React.Component {
             links: [link, ...links]
         }))
     }
+    handleDeleteLink(id) {
+        linksService.remove(id)
+            .then(() => this.fetchLinks())
+            .catch(error => console.error(error))
+    }
 
     render() {
         const { links, isLoading } = this.state;
         return (
             links &&
             <>
-            <div className="row mb-2">
-                        <div className="col">
-                            <LinkCreator onCreateLink={(link) => this.handleCreateLink(link)}/>
-                        </div>
+                <div className="row mb-2">
+                    <div className="col">
+                        <LinkCreator onCreateLink={(link) => this.handleCreateLink(link)} />
                     </div>
+                </div>
 
                 {isLoading ? (<i className="fa fa-gear fa-spin" />) : (
                     <div className="row mb-2">
                         <div className="col">
                             {links.map(link =>
                                 <div key={link.id} className="mb-2">
-                                    <LinkItem {...link} />
+                                    <LinkItem {...link} onDeleteLink={(id) => this.handleDeleteLink(id)} />
                                 </div>)}
                         </div>
                     </div>

@@ -1,6 +1,11 @@
-.card{
+.card {
     flex-direction: row;
 }
 .card img {
     width: 20%;
+}
+
+.delete {
+    z-index: 1;
+    
 }
