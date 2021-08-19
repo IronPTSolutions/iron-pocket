@@ -42,6 +42,7 @@ class Linkslist extends React.Component {
             <>
                 <div className="row mb-2">
                     <div className="col">
+                        <h3 className="mb-3">Save now, read later</h3>
                         <LinkCreator onCreateLink={(link) => this.handleCreateLink(link)} />
                     </div>
                 </div>
