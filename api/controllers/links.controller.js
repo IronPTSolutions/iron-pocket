@@ -4,25 +4,63 @@ const Link = require('../models/link.model');
 
 //** TODO: Links CRUD actions: list, detail, create, update */
 
+module.exports.list = (req, res, next) => {
+  Link.find()
+    .then(links => res.json(links))
+    .catch(next)
+}
 
-module.exports.create = (req, res, next) => {
+module.exports.detail = (req, res, next) => {
+  res.json(req.link)    
+}
 
-  // We are receiving only the link url at the http request body
-  // req.body => { url: "https://something.com" }
-  // but we need more link's metadata before store it in the database: title, description, image...
-  // With the urlMetadata library we can request the link metadata as a promise: https://www.npmjs.com/package/url-metadata#usage
-  // Please don't freak out with documentation! it's just a promise!: urlMetadata(url).then(metadata => {}).catch(error => next(error))
+module.exports.delete = (req, res, next) => {
+  Link.deleteOne({ _id : req.link.id})
+    .then(() => res.status(204).send())
+    .catch(next)
+}
 
 
-  const url; // TODO: get the link url from request
-  // We need validate the URL before use it at urlMetadata, we can use mongoose model validation 
-  // and select the only field/fields that we need to validate (url in this case):
-  // https://mongoosejs.com/docs/api.html#document_Document-validate
+ module.exports.create = (req, res, next) => {
+// https://www.npmjs.com/package/url-metadata#usage
+// https://mongoosejs.com/docs/api.html#document_Document-validate
   
-  new Link({ url }).validate('url')
+   const link = { url } = req.body; 
+
+   new Link(link).validate('url')
     .then(() => urlMetadata(url))
-    .then(metadata => {
-        // Create link's json and store at the database
+    .then(metadata => { 
+     link.title = metadata.title;
+     link.image = metadata.image;
+     link.description = metadata.description;
+     link.keywords = metadata.keywords.split(',');
+
+     if (link.url !== req.url) {
+       Link.create(link)
+       .then(newlink => res.status(201).json(newlink))
+       .catch(next)   
+       
+     } else if ( link.url === req.url) {
+
+      next(createError(400, 'This url has already been added'))
+
+     }  else {
+
+      createError(error)
+
+    }
     })
-    .catch(error => next(error))
+  
+    .catch(error => next(error))  
+}
+
+module.exports.edit = (req, res, next) => {
+
+  const link = {title, image, description, keywords} = req.body
+  Object.assign(req.link, link)
+  req.link.save()
+  .then(link => res.json(link))
+  .catch(next)
+
+
 }

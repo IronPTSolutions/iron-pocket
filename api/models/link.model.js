@@ -1,23 +1,40 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const URL_PATTERN = /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/
 
-/**
-  | Attribute   | Type     | Validation               |
-  |-------------|----------|--------------------------|
-  | url         | String   | Required, must be an URL |
-  | title       | String   |                          |
-  | description | String   |                          |
-  | image       | String   |                          |
-  | keywords    | [String] | default empty            |
- */
 
 const linkSchema = new Schema(
   {
-    // TODO: model attributes validations
+    url: {
+      type: String,
+      required: 'Please, provide an url address',
+      match: [URL_PATTERN, 'Please enter a valid URL']
+    },
+    title: {
+      type: String
+    },
+    description: {
+      type: String
+    },
+    image: {
+      type: String
+    },
+    keywords: {
+      type: [String],
+      default:[]
+    }
   },
   {
     timestamps: true,
-    // TODO: toJSON transformation
+    toJSON: {
+      virtuals: true,
+      transform: function(doc, ret) {
+        ret.id = ret._id;
+        delete ret.__v;
+        delete ret._id;
+        return ret
+      }
+    }
   }
 )
 
