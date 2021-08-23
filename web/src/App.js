@@ -1,12 +1,21 @@
+import { Switch, Route, Redirect} from 'react-router-dom';
 import Footer from "./components/footer/Footer";
 import Header from "./components/header/Header";
+import LinkDetail from './components/links/link-details/LinkDetails';
 import LinkList from "./components/links/links-list/LinkLists";
 
 function App() {
   return (
     <>
     <Header/>
-    <LinkList/>
+    <div className="container">
+      <Switch>
+        <Route exact path="/" component={LinkList} />
+        <Route exact path="/links/:id" component={LinkDetail} />
+        
+        
+      </Switch>
+    </div>
     <Footer/>
     </>
   );
