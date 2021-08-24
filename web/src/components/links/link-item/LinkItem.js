@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 function LinkItem({ title, image, keywords, description, id, createdAt }) {
     return (
         <div className="card mb-3">
-            <div className="row g-0">
+            <div className="row g-1">
             
                 <div className="col-md-2">
                     <img src={image} className="w-100 h-100" styles={{ objectFit: 'contain' }} alt={title} />
