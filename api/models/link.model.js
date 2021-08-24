@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const URL_PATTERN=/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
 /**
   | Attribute   | Type     | Validation               |
   |-------------|----------|--------------------------|
@@ -13,11 +14,27 @@ const Schema = mongoose.Schema;
 
 const linkSchema = new Schema(
   {
-    // TODO: model attributes validations
+    url: {
+      type: String, 
+      required: 'URL is required', 
+      match: [URL_PATTERN, 'URL not valid'], 
+      lowercase: true
+    }, 
+    title: String,
+    description: String, 
+    image: String,
   },
   {
     timestamps: true,
-    // TODO: toJSON transformation
+    toJSON: {
+      virtuals: true, 
+      transform: function(doc, ret) {
+        ret.id = ret._id; 
+        delete ret.__v; 
+        delete ret._id; 
+        return ret;
+      }
+    }
   }
 )
 
