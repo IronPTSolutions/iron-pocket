@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import linkService from '../../../services/links-service';
 
 class LinkDetail extends Component {
@@ -49,7 +50,7 @@ class LinkDetail extends Component {
                 </div>
                 <div className="col-12">
                     <div className="btn-group" role="group" aria-label="Basic mixed styles example">
-                        <a role="button" className="btn btn-primary" href="/links/6110e54e250387000f058953/edit"><i className="fa fa-edit"></i></a>
+                        <Link role="button" className="btn btn-primary" to={`/${link.id}/edit`}><i className="fa fa-edit"></i></Link>
                         <a type="button" className="btn btn-secondary" href={link.url} target="_blank" rel="noopener noreferrer"><i className="fa fa-eye"></i></a>
                         <button type="button" className="btn btn-danger" onClick={() => this.handleDeleteLink(link.id)}><i className="fa fa-times"></i></button>
                     </div>
