@@ -1,6 +1,6 @@
 const express = require('express');
-const router = express.Router();
 const links = require('../controllers/links.controller')
+const router = express.Router();
 
 router.get('/links', links.list)
 router.post('/links', links.create)

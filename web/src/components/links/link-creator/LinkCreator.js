@@ -36,8 +36,8 @@ class LinkCreator extends React.Component {
         const inputName = event.target.name;
         this.setState(({ touched }) => ({
             touched: {
-                ...touched, 
-                [inputName] : true
+                ...touched,
+                [inputName]: true
             }
         }))
     }
@@ -69,7 +69,7 @@ class LinkCreator extends React.Component {
 
             linkService.create(link)
                 .then(link => {
-                    this.props.onCreateLink(link);
+                    this.props.onCreatedLink(link);
                     this.setState(this.initialState())
                 })
                 .catch(error => {
@@ -99,14 +99,14 @@ class LinkCreator extends React.Component {
         return (
             <form onSubmit={(event) => this.handleSubmitLink(event)}>
                 <div className="input-group mb-3">
-                    <input type="text" className={`form-control ${errors.url && touched.url ? 'is-invalid' : ""}`} name="url" placeholder="Add a link..." value={link.url}
+                    <input type="text" className={`form-control ${errors.url && touched.url ? 'is-invalid' : ""}`} name="url" placeholder="https://..." value={link.url}
                         onChange={(event) => this.handleInputChange(event)} onBlur={(event) => this.handleBlur(event)} />
                     <div className="input-group-append">
                         <button className="btn btn-outline-secondary" type="submit" disabled={!this.isFormValid()}>
                             <i className="fa fa-floppy-o" aria-hidden="true" />
                         </button>
+                        {errors.url && touched.url && <div className="invalid-feedback">{errors.url}</div>}
                     </div>
-                    {errors.url && touched.url && <div className="invalid-feedback">{errors.url}</div>}
                 </div>
             </form>
         )
@@ -114,7 +114,7 @@ class LinkCreator extends React.Component {
 }
 
 LinkCreator.defaultProps = {
-    onCreateLink: () => {}
+    onCreatedLink: () => { }
 }
 
 export default LinkCreator

@@ -9,25 +9,28 @@ class LinkDetails extends React.Component {
     componentDidMount() {
         const id = this.props.match?.params?.id
         linksService.details(id)
-        .then(link => this.setState({ link }))
-        .catch(error => {
-            console.error(error);
-            if (error.response?.status ===404) {
-                this.props.history.push('/404');
-            }
-        })
+            .then(link => this.setState({ link }))
+            .catch(error => {
+                console.error(error);
+                if (error.response?.status === 404) {
+                    this.props.history.push('/404');
+                }
+            })
     }
     render() {
         const { link } = this.state
-        return(
+        return (
             link && (
-            <>
-                        <div className="col-md-2">
-                        <img src={link.image}/>
-                        </div>
-                        <div>{link.title}</div>
-                        <div>{link.description}</div>
-</>
+                <>
+                <div className="container d-flex row justify-content-center">
+                    <div className="col-md-5">
+                        <img className="img-thumbnail rounded mx-auto d-block" src={link.image} alt="article" />
+                    </div>
+                    <h3>{link.title}</h3>
+                    <div><small>{link.description}</small></div>
+                    <a href={link.url} role="button" target="_blank" rel="noreferrer" className="btn btn-outline-secondary mt-4">Visit the live page</a>
+                </div>
+                </>
             )
 
         )
