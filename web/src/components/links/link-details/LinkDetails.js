@@ -16,6 +16,7 @@ class LinkDetail extends Component {
     }
     handleDelete() {
         const { link } = this.state
+        console.log(link.id)
         serviceLink.remove(link.id)
             .then(() => this.props.history.push('/')) //no lo sabía, pero bueno saberlo (es como el res.redirect dela api)
             .catch(err => console.error(err))

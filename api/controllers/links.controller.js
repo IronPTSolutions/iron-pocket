@@ -11,7 +11,7 @@ module.exports.create = (req, res, next) => {
   new Link({ url }).validate('url')
     .then(() => urlMetadata(url))
     .then(metadata => {
-      const info = { title, image, description,keywords } = metadata
+      const info = { title, image, description, keywords } = metadata
       return Link.create({ url, ...info })
     })
     .then(link => res.status(201).json(link))
@@ -31,16 +31,15 @@ module.exports.detail = (req, res, next) => {
 }
 
 module.exports.delete = (req, res, next) => {
-
-  Link.findOne({ _id: req.link.id })
+  Link.deleteOne({ _id: req.link.id })
     .then(() => res.status(204).send())
     .catch(next)
 }
 
 module.exports.update = (req, res, next) => {
 
-  const link = req.link 
-  const url = { title, description, image, keywords } = req.body 
+  const link = req.link
+  const url = { title, description, image, keywords } = req.body
   Object.assign(link, url)
   link.save()
     .then(link => res.json(link))
