@@ -1,6 +1,7 @@
 
 import { Component } from 'react';
 import serviceLinks from '../../../services/links-service';
+import Header from '../../header/Header';
 import LinkCreator from '../link-creator/LinkCreator';
 import LinkItem from '../link-item/LinkItem';
 
@@ -32,6 +33,7 @@ class LinkList extends Component {
         return (
         
             <div>
+                <Header /> 
                 <LinkCreator onLinkCreated={(link) => this.handleCreator(link)} />
                 {links.map(link => <LinkItem   key={link.id} {...link}/>)}
             </div>

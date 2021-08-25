@@ -1,6 +1,7 @@
 
 import { Component } from 'react';
 import serviceLink from '../../../services/links-service';
+import Header from '../../header/Header';
 class LinkDetail extends Component {
 
     state = {
@@ -8,7 +9,7 @@ class LinkDetail extends Component {
     }
 
     componentDidMount() {
-       const id = this.props.match?.params?.id
+        const id = this.props.match?.params?.id
         serviceLink.details(id)
             .then(link => this.setState({ link }))
             .catch(err => console.error(err))
@@ -16,18 +17,19 @@ class LinkDetail extends Component {
     handleDelete() {
         const { link } = this.state
         serviceLink.remove(link.id)
-            .then(() => this.props.history.push('/')) //no lo sabía, pero bueno saberlo jaja
+            .then(() => this.props.history.push('/')) //no lo sabía, pero bueno saberlo (es como el res.redirect dela api)
             .catch(err => console.error(err))
     }
 
     render() {
         const { link } = this.state
         if (!link) return <></>
-        return(
-            <div className="row mb-3 "> 
+        return (
+            <div className="row mb-3 ">
+                <Header />
 
                 <div className="col-6">
-                    <img src={link.image} alt={link.title} className="img-fluid"/>
+                    <img src={link.image} alt={link.title} className="img-fluid" />
                 </div>
 
                 <div className="row">
@@ -37,7 +39,7 @@ class LinkDetail extends Component {
                         <button type="button" className="btn btn-danger" onClick={() => this.handleDelete()}>Delete Link</button>
                     </div>
                 </div>
-                
+
             </div>
         )
     }
