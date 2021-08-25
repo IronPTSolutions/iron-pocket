@@ -59,8 +59,8 @@ class LinkCreator extends Component {
     }
 
     handleSubmit(event) {
-        event.preventDefault()
         const { link } = this.state
+        event.preventDefault()
         serviceLink.create(link)
             .then(link => this.props.onLinkCreated(link))
             .catch(err => console.error(err))

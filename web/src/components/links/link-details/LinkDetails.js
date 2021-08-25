@@ -13,6 +13,12 @@ class LinkDetail extends Component {
             .then(link => this.setState({ link }))
             .catch(err => console.error(err))
     }
+    handleDelete() {
+        const { link } = this.state
+        serviceLink.remove(link.id)
+            .then(() => this.props.history.push('/')) //no lo sabía, pero bueno saberlo jaja
+            .catch(err => console.error(err))
+    }
 
     render() {
         const { link } = this.state
@@ -28,8 +34,10 @@ class LinkDetail extends Component {
                     <div className="col-12">
                         <h1>{link.title}</h1>
                         <p>{link.description}</p>
+                        <button type="button" className="btn btn-danger" onClick={() => this.handleDelete()}>Delete Link</button>
                     </div>
                 </div>
+                
             </div>
         )
     }
