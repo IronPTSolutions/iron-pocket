@@ -5,12 +5,11 @@ import http from './base-api-service';
 const list = () => http.get('/links')
 const details = (id) => http.get(`/links/${id}`)
 
-
-
+const create = (link) => http.post(`/links`, link)
 const service = {
     list,
-    details
-
+    details,
+    create,
 }
 
 export default service

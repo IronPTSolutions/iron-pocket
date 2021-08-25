@@ -58,12 +58,20 @@ class LinkCreator extends Component {
         }))
     }
 
+    handleSubmit(event) {
+        event.preventDefault()
+        const { link } = this.state
+        serviceLink.create(link)
+            .then(link => this.props.onLinkCreated(link))
+            .catch(err => console.error(err))
+    }
+
     render() {
         const {link, errors, touched } = this.state
         return (
-            <form>
+            <form onSubmit={(event) => this.handleSubmit(event)}>
                 <div className="input-group mb-3">
-                    <input type="text" name="url"  className={`form-control ${errors.url && touched.url ? 'is-invalid' : ''}`} placeholder="https://...." aria-label="Add link"
+                    <input type="text" name="url"  className={`form-control ${errors.url && touched.url ? 'is-invalid' : ''}`} placeholder="https://.." 
                         value={link.url}  onChange={(event) => this.handleChange(event)} onBlur={(event) => this.handleBlur(event)}/>
                     <button className="btn btn-outline-secondary" type="submit" ><i className="far fa-hand-point-up"></i></button>
                     {errors.url && touched.url && <div className="invalid-feedback">{errors.url}</div>}
@@ -73,4 +81,7 @@ class LinkCreator extends Component {
     }
 }
 
+LinkCreator.defaultProps = {
+    onLinkCreated: () => {}
+  }
 export default LinkCreator

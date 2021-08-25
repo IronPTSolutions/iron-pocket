@@ -18,6 +18,13 @@ class LinkList extends Component {
             .catch(err => console.error(err))
     }
 
+    handleCreator(link) {
+        console.log("oioioi")
+        console.log(link)
+        this.setState(({ links }) => ({
+            links: [...links, link]
+        }))
+    }
 
     render() {
         const { links } = this.state
@@ -25,7 +32,7 @@ class LinkList extends Component {
         return (
         
             <div>
-                <LinkCreator />
+                <LinkCreator onLinkCreated={(link) => this.handleCreator(link)} />
                 {links.map(link => <LinkItem   key={link.id} {...link}/>)}
             </div>
         )
