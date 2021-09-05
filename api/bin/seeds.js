@@ -1,6 +1,7 @@
 const urlMetadata = require('url-metadata');
 const links = require('../data/links.json');
 const mongoose = require('mongoose');
+const Link = require('../models/link.model');
 
 require('../config/db.config');
 
@@ -21,9 +22,7 @@ mongoose.connection.once('open', () => {
       // Each metadata request is a promise, we need wait for all promises before execute the next 'then'
       return Promise.all(linksWithMetadata)
     })
-    .then(links => {
-      // TODO: store links at the database 
-    })
+    .then(links => Link.create(links))
     .catch(error => console.error('An error ocurred running seeds', error))
     .then(() => mongoose.disconnect())
 });
